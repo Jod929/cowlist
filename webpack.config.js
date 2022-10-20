@@ -24,12 +24,12 @@ module.exports = {
     publicPath: "/dist/",
     filename: "bundle.js"
   },
-  devServer: {
-    contentBase: path.join(__dirname, "public/"),
-    port: 8080,
-    publicPath: "http://localhost:3000/dist/",
-    hotOnly: true
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, "public/"),
+  //   port: 8080,
+  //   publicPath: "http://localhost:8080/dist/",
+  //   hotOnly: true
+  // },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };
 

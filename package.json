@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/babel src --out-dir lib && webpack",
     "start": "webpack-dev-server --mode development",
-    "server": "nodemon /Users/joshkrebs/cowlist/server/index.js"
+    "server": "nodemon /Users/joshkrebs/cowlist/server/index.js",
+    "dev": "webpack-dev-server --mode development && nodemon /Users/joshkrebs/cowlist/server/index.js"
   },
   "repository": {
     "type": "git",
