@@ -17,7 +17,7 @@ const port = 8080;
 
 var jsonParser = bodyParser.json();
 
-app.get('/api', (req, res) => {
+app.get('/', (req, res) => {
   console.log('is this thing working')
   res.send('I think its working')
   // res.sendFile(HTML_FILE);
