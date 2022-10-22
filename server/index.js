@@ -19,8 +19,11 @@ const port = 8080;
 var jsonParser = bodyParser.json();
 
 app.get('/api/cows', (req, res) => {
+  connection.query('SELECT * FROM list', (err, results, fields) => {
+    if (err) throw err;
 
-  connection.query('SELECT * FROM list', )
+    console.log(results)
+  })
   console.log('is this thing working')
   res.send('I think its working')
   // res.sendFile(HTML_FILE);
@@ -32,10 +35,13 @@ app.post('/api/cows', jsonParser, (req, res) => {
   let name = req.body.name;
   let desc = req.body.description;
 
-  connection.query(`INSERT INTO list (name, description) VALUE (${name}, ${desc})`, (err, results, fields) => {
+  let query = `INSERT INTO list(name, description) VALUES(?, ?)`;
+  let values = [name, desc];
+
+  connection.query(query, values, (err, results, fields) => {
     if (err) throw err;
 
-    console.log('the data is ', results[0]);
+    console.log('the data is ', results);
   })
 
   res.send(req.body)
