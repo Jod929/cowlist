@@ -23,9 +23,10 @@ app.get('/api/cows', (req, res) => {
     if (err) throw err;
 
     console.log(results)
+    res.send(results)
   })
   console.log('is this thing working')
-  res.send('I think its working')
+
   // res.sendFile(HTML_FILE);
  });
 
