@@ -19,35 +19,57 @@ const port = 8080;
 var jsonParser = bodyParser.json();
 
 app.get('/api/cows', (req, res) => {
-  connection.query('SELECT * FROM list', (err, results, fields) => {
-    if (err) throw err;
 
-    console.log(results)
-    res.send(results)
+  return new Promise((resolve, reject) => {
+    connection.query('SELECT * FROM list', (err, results, fields) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+        console.log(results)
+        res.send(results)
+      }
+    })
   })
-  console.log('is this thing working')
 
-  // res.sendFile(HTML_FILE);
  });
 
 
 app.post('/api/cows', jsonParser, (req, res) => {
 
-  let name = req.body.name;
-  let desc = req.body.description;
+  return new Promise((resolve, reject) => {
+    let name = req.body.name;
+    let desc = req.body.description;
 
-  let query = `INSERT INTO list(name, description) VALUES(?, ?)`;
-  let values = [name, desc];
+    let query = `INSERT INTO list(name, description) VALUES(?, ?)`;
+    let values = [name, desc];
 
-  connection.query(query, values, (err, results, fields) => {
-    if (err) throw err;
-
-    console.log('the data is ', results);
+    connection.query(query, values, (err, results, fields) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(results);
+      }
+    })
   })
 
-  res.send(req.body)
+
+  // this is the functionality that needs to be added to the post request portion of ajax on client -----
+
+  // .then((data) => {
+  //   connection.query('SELECT * FROM list', (err, results, fields) => {
+  //     if (err) {
+  //       console.log('err')
+  //     } else {
+  //       res.send(results)
+  //     }
+  //   })
+  // })
+
 
 })
+
+//
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

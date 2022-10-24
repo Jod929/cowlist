@@ -15,16 +15,14 @@ class App extends Component{
   componentDidMount() {
     $.ajax({
       url: "/api/cows",
-      method: "GET",
-      success: function(err, res) {
-        if (err) throw err;
-        console.log(res);
-      },
-      error: function(err) {
-        console.log(err);
-      }
-    }).then(function(data) {
-      console.log(data);
+      method: "GET"
+    })
+    .then((results) => {
+      console.log(results);
+    })
+    .catch((err) => {
+      console.log(err);
+      return;
     })
   }
 
